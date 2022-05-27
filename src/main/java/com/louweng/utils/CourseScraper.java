@@ -74,6 +74,8 @@ public class CourseScraper
         return result;
     }
 
+    // Got this from stack overflow to sleep between API calls 
+    // https://stackoverflow.com/a/57567069
     public static void wait(int ms)
     {
         try
@@ -107,7 +109,6 @@ public class CourseScraper
         catch (Exception e)
         {
             log.error(e.getMessage());
-        } 
-        
+        }    
     }
 }
