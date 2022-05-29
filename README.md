@@ -7,25 +7,29 @@ Due to the structured nature of UBC's course information, a relational database 
 
 ```
 CREATE TABLE subjects (
-    subject_id VARCHAR(10) PRIMARY KEY,
-    subject_title VARCHAR(100) NOT NULL,
-    faculty VARCHAR(100) NOT NULL
+    subject_id TEXT PRIMARY KEY,
+    subject_title TEXT NOT NULL,
+    faculty TEXT NOT NULL
 );
 
 CREATE TABLE courses (
-    course_id VARCHAR(50) PRIMARY KEY,
-    course_title VARCHAR(50) NOT NULL, 
-    subject_id VARCHAR(10) REFERENCES subjects(subject_id)
+    course_id TEXT NOT NULL,
+    course_title TEXT NOT NULL, 
+    subject_id TEXT REFERENCES subjects(subject_id),
+    constraint pk_courses PRIMARY KEY(subject_id, course_id)
 );
 
 CREATE TABLE sections (
-    section_id VARCHAR(50) PRIMARY KEY, 
-    activity VARCHAR(50) NOT NULL, 
+    section_id TEXT NOT NULL, 
+    activity TEXT NOT NULL, 
     term INT NOT NULL, 
-    mode_of_delivery VARCHAR(50) NOT NULL, 
-    days VARCHAR(50) NOT NULL, 
-    start_time VARCHAR(10) NOT NULL, 
-    end_time VARCHAR(10) NOT NULL
-    course_id VARCHAR(50) REFERENCES courses(course_id)
+    mode_of_delivery TEXT NOT NULL, 
+    days TEXT NOT NULL, 
+    start_time TEXT NOT NULL, 
+    end_time TEXT NOT NULL,
+    subject_id TEXT NOT NULL,
+    course_id TEXT NOT NULL,
+    constraint fk_sections FOREIGN KEY (subject_id, course_id) REFERENCES courses(subject_id, course_id),
+    constraint pk_sections PRIMARY KEY (subject_id, course_id, section_id)
 );
 ```

@@ -17,7 +17,7 @@ public class SectionRepository
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<Section> getAllSubjects()
+    public List<Section> getAllSections()
     {
         return entityManager.createQuery("select s from sections s", Section.class).getResultList();
     }

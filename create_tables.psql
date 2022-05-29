@@ -1,22 +1,26 @@
 CREATE TABLE subjects (
     subject_id TEXT PRIMARY KEY,
-    subject_title VARCHAR(100) NOT NULL,
-    faculty VARCHAR(100) NOT NULL
+    subject_title TEXT NOT NULL,
+    faculty TEXT NOT NULL
 );
 
 CREATE TABLE courses (
-    course_id TEXT PRIMARY KEY,
+    course_id TEXT NOT NULL,
     course_title TEXT NOT NULL, 
-    subject_id TEXT REFERENCES subjects(subject_id)
+    subject_id TEXT REFERENCES subjects(subject_id),
+    constraint pk_courses PRIMARY KEY(subject_id, course_id)
 );
 
 CREATE TABLE sections (
-    section_id TEXT PRIMARY KEY, 
+    section_id TEXT NOT NULL, 
     activity TEXT NOT NULL, 
     term INT NOT NULL, 
     mode_of_delivery TEXT NOT NULL, 
     days TEXT NOT NULL, 
     start_time TEXT NOT NULL, 
     end_time TEXT NOT NULL,
-    course_id TEXT REFERENCES courses(course_id)
+    subject_id TEXT NOT NULL,
+    course_id TEXT NOT NULL,
+    constraint fk_sections FOREIGN KEY (subject_id, course_id) REFERENCES courses(subject_id, course_id),
+    constraint pk_sections PRIMARY KEY (subject_id, course_id, section_id)
 );

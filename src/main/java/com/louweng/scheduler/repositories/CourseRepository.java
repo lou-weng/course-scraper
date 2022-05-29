@@ -17,7 +17,7 @@ public class CourseRepository
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<Course> getAllSubjects()
+    public List<Course> getAllCourses()
     {
         return entityManager.createQuery("select c from courses c", Course.class).getResultList();
     }

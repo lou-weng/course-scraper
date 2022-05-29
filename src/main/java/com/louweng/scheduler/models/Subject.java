@@ -10,8 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity(name="subjects")
-@Data
 @Table(name="subjects")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Subject 

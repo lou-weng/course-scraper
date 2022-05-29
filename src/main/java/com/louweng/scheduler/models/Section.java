@@ -10,10 +10,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity(name="sections")
-@Data
 @Table(name="sections")
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Section 
 {
     @Id
@@ -28,6 +28,8 @@ public class Section
     String startTime;
     @Column(name="end_time")
     String endTime;
+    @Column(name="subject_id")
+    String subjectId;
     @Column(name="course_id")
     String courseId;
 }

@@ -10,8 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity(name="courses")
-@Data
 @Table(name="courses")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Course {
