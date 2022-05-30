@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class SchedulingServiceTest {
-
+public class SchedulingServiceTest 
+{
     SchedulingService schedulingService = new SchedulingService();
 
     List<Section> schedule;
@@ -27,12 +27,26 @@ public class SchedulingServiceTest {
     Section s4;
 
     @BeforeEach
-    public void setupTests() {
+    public void setupTests() 
+    {
         schedule = new ArrayList<>();
     }
 
     @Test
-    public void checkValidScheduling_validTimeSchedule_shouldPass() {
+    public void checkValidScheduling_noSections_shouldPass() {
+        try 
+        {
+            assertTrue(schedulingService.checkValidTimeScheduling(schedule));
+        }
+        catch (Exception e) 
+        {
+            fail();
+        }
+    }
+
+    @Test
+    public void checkValidScheduling_validTimeSchedule_shouldPass() 
+    {
         s1 = new Section("101", "Mon Tue Wed", "10:30", "12:00", "COMM", "202");
         s2 = new Section("102", "Thu Fri", "10:30", "12:00", "CPSC", "202");
         s3 = new Section("103", "Mon Tue Wed", "13:30", "15:00", "ANTH", "202");
@@ -51,7 +65,8 @@ public class SchedulingServiceTest {
     }
 
     @Test
-    public void checkValidScheduling_invalidCourseDuplicate_shouldFail() {
+    public void checkValidScheduling_invalidCourseDuplicate_shouldFail() 
+    {
         s1 = new Section("101", "Mon Tue Wed", "10:30", "12:00", "COMM", "202");
         s2 = new Section("102", "Mon Tue Wed", "10:30", "12:00", "COMM", "202");
         s3 = new Section("103", "Mon Tue Wed", "13:30", "15:00", "CPSC", "202");
@@ -70,7 +85,8 @@ public class SchedulingServiceTest {
     }
 
     @Test
-    public void checkValidScheduling_invalidTimeConflict_shouldFail() {
+    public void checkValidScheduling_invalidTimeConflict_shouldFail() 
+    {
         s1 = new Section("101", "Mon Tue Wed", "10:30", "12:00", "COMM", "202");
         s2 = new Section("102", "Thu Fri", "10:30", "12:00", "CPSC", "202");
         s3 = new Section("103", "Mon Tue Wed", "11:30", "15:00", "ANTH", "202");
@@ -89,7 +105,8 @@ public class SchedulingServiceTest {
     }
 
     @Test 
-    public void checkValidScheduling_invalidDates_shouldFail() {
+    public void checkValidScheduling_invalidDates_shouldFail() 
+    {
         s1 = new Section("101", "Mon Tueday Wed", "10:30", "12:00", "COMM", "202");
         s2 = new Section("102", "Thuday Fri", "10:30", "12:00", "CPSC", "202");
         s3 = new Section("103", "Mon Tue Wednesday", "13:30", "15:00", "ANTH", "202");
@@ -109,7 +126,8 @@ public class SchedulingServiceTest {
     }
 
     @Test
-    public void checkValidScheduling_invalidTime_shouldFail() {
+    public void checkValidScheduling_invalidTime_shouldFail() 
+    {
         s1 = new Section("101", "Mon Tue Wed", "43:30", "12:00", "COMM", "202");
         s2 = new Section("102", "Thu Fri", "10:86", "12:00", "CPSC", "202");
         s3 = new Section("103", "Mon Tue Wed", "13:30", "15:00", "ANTH", "202");
@@ -127,5 +145,4 @@ public class SchedulingServiceTest {
             log.error("Successfully threw an error " + e.getMessage());
         }
     }
-    
 }

@@ -46,7 +46,8 @@ public class ScheduleInterval
             this.endTime = endHour + endMin;
             log.info("Creating schedule interval with : " + this.startTime + " " + this.endTime);
 
-            if (this.endTime <= this.startTime) {
+            if (this.endTime <= this.startTime) 
+            {
                 throw new InvalidTimeException("Course end time cannot be before start time");
             }
         } 
@@ -57,7 +58,8 @@ public class ScheduleInterval
         }
     }
 
-    public boolean noIntervalAndTimeOverlap(double startTime, double endTime) {
+    public boolean noIntervalAndTimeOverlap(double startTime, double endTime) 
+    {
         return this.startTime >= endTime || this.endTime <= startTime;
     }
 }
