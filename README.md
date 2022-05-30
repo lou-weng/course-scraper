@@ -25,7 +25,7 @@ The end goal of the project includes the following:
 
 Since this information needs to be scraped from a website, a util tool to load the course info into a database is included with the project. 
 
-To reduce the amount of queries made to the UBC site and to avoid DDoSing the school, the html pages at each REST endpoint containing subject/course/section information will be 'cached' in a folder and scrapes will be done on the folder files. 
+To reduce the amount of queries made to the UBC site and to avoid DDoSing the school, the html pages at each REST endpoint containing subject/course/section information will be 'cached' in a folder and scrapes will be done on the folder files.  
 
 Jsoup will be the library of choice to follow the java theme of the project. Introducing the library dependency into the project through Maven is trivial. 
 
@@ -43,6 +43,7 @@ Jsoup will be the library of choice to follow the java theme of the project. Int
 - [ ] deploying the app through a CI/CD pipeline
 - [ ] dockerizing the app for easy deployment
 - [ ] making the course website scraper application into its own service that schedules scrapes throughout the year (to make sure course information is updated at the start of each semester since it changes tri-annually)
+- [ ] Using an actual storage/cache like S3 or Redis for storing scraped HTML files rather than storing them all in a local folder. 
 
 ## Data Model
 ### Database Schema
