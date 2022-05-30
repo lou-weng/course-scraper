@@ -7,29 +7,50 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Entity(name="sections")
 @Table(name="sections")
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class Section 
 {
     @Id
     @Column(name="section_id")
-    String sectionId;
+    final String sectionId;
     String activity;
     int term;
     @Column(name="mode_of_delivery")
     String modeOfDelivery;
-    String days;
+    final String days;
     @Column(name="start_time")
-    String startTime;
+    final String startTime;
     @Column(name="end_time")
-    String endTime;
+    final String endTime;
     @Column(name="subject_id")
-    String subjectId;
+    final String subjectId;
     @Column(name="course_id")
-    String courseId;
+    final String courseId;
+
+    @Override
+    public int hashCode() 
+    {
+        return subjectId.hashCode() + courseId.hashCode() + sectionId.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) 
+    {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof Section)) {
+            return false;
+        }
+
+        Section s = (Section) o;
+        return s.hashCode() == this.hashCode();
+    }
 }
